@@ -13,7 +13,7 @@ function NewMeetUp (){
                 'Content-type': 'application/json;',
             },
         })
-        .then((res) => {navigate('/', {replace: true})})
+        .then(() => {navigate('/', {replace: true})})
         .catch((err) => console.log(err));
     }
 
