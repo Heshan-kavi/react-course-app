@@ -17,8 +17,6 @@ function NewMeetupForm (props){
             address : addressInputRef.current.value,
             description : descriptionInputRef.current.value,
         }
-        console.log("this is the meeting details of the new meeting page");
-        console.log(newMeetingDetails);
         props.addMeetupClick(newMeetingDetails);
     }
     return (
