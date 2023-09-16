@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import NewMeetupForm from "../components/meetups/NewMeetupForm";
 
 function NewMeetUp (){
+
+    const navigate = useNavigate();
 
     function addNewMeetupHandler(newMeetingDetails){
         fetch('https://react-course-app-5b071-default-rtdb.asia-southeast1.firebasedatabase.app/meetups.json', {
@@ -10,7 +13,7 @@ function NewMeetUp (){
                 'Content-type': 'application/json;',
             },
         })
-        .then((res) => {console.log(res)})
+        .then((res) => {navigate('/', {replace: true})})
         .catch((err) => console.log(err));
     }
 
