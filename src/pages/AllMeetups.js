@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
+import LoadingScreen from "../components/layout/LoadingScreen";
 
 function AllMeetups (){
 
@@ -30,9 +31,7 @@ function AllMeetups (){
 
   if(isLoading){
     return (
-      <div>
-        <p>loading</p>
-      </div>
+        <LoadingScreen/>
     )
   }
 
