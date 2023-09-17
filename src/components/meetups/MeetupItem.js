@@ -1,7 +1,13 @@
+import { useDispatch } from 'react-redux';
+import { addNewMeetup } from '../../store/reducers/FavouriteSlice';
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 
+
 function MeetupItem (props){
+
+    const dispatch = useDispatch();
+
     return (
         <li className={classes.item}>
             <Card>
@@ -14,7 +20,9 @@ function MeetupItem (props){
                     <p>{props.description}</p>
                 </div>
                 <div className={classes.actions}>
-                    <button>To Favourites</button>
+                    <button onClick={() => {
+                        dispatch(addNewMeetup({id : props.id}))
+                    }}>To Favourites</button>
                 </div>
             </Card>
         </li>

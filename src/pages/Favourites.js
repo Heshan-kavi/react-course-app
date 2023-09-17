@@ -1,6 +1,7 @@
 import MeetupList from "../components/meetups/MeetupList";
 
 function Favourites (){
+
     return (
         <section>
         <h1>My Favourites meetings</h1>
