@@ -3,17 +3,20 @@ import { createSlice } from '@reduxjs/toolkit'
 export const FavouriteSlice = createSlice({
   name: 'favourites',
   initialState: {
-    favouriteList: 0,
+    favouriteList: [],
+    numOfItemsInTheFavList: 0
   },
   reducers: {
-    addNewMeetupToTheList: (state) => {
-      state.favouriteList += 1
+    addNewMeetup: (state,action) => {
+      state.favouriteList.push(action.payload)
+      state.numOfItemsInTheFavList += 1
     },
-    removeMeetupToTheList: (state) => {
-      state.favouriteList -= 1
+    removeMeetup: (state,action) => {
+      state.favouriteList.push(action.payload)
+      state.numOfItemsInTheFavList -= 1
     },
   },
 })
 
-export const { addNewMeetupToTheList, removeMeetupToTheList } = FavouriteSlice.actions
+export const { addNewMeetup, removeMeetup} = FavouriteSlice.actions
 export default FavouriteSlice.reducer

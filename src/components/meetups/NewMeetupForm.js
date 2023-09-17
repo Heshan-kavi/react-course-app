@@ -16,6 +16,7 @@ function NewMeetupForm (props){
             image : imageInputRef.current.value,
             address : addressInputRef.current.value,
             description : descriptionInputRef.current.value,
+            isFavourite: false
         }
         props.addMeetupClick(newMeetingDetails);
     }
