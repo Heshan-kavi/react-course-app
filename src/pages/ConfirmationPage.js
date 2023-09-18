@@ -22,7 +22,7 @@ function ConfirmationPage(){
                             <td>{val.title}</td>
                             <td>{val.address}</td>
                             <td width="1000px">{val.description}</td>
-                            <td><img src={val.image} alt="React Image" width="150px"/></td>
+                            <td><input type="image" img src = {val.image} alt="photo" width="300px"/></td>
                         </tr>
                     )
                 })}
