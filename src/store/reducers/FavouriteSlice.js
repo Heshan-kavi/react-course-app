@@ -8,15 +8,22 @@ export const FavouriteSlice = createSlice({
   },
   reducers: {
     addNewMeetup: (state,action) => {
-      state.favouriteList.push(action.payload)
-      state.numOfItemsInTheFavList += 1
+        const value = state.favouriteList.some(meetup => meetup.id === action.payload.id);
+        if(!value){
+          state.favouriteList.push(action.payload)
+          state.numOfItemsInTheFavList += 1
+        }
     },
     removeMeetup: (state,action) => {
-      state.favouriteList.push(action.payload)
-      state.numOfItemsInTheFavList -= 1
+        state.favouriteList.filter(meetup => meetup.id !== action.payload.id);
+        state.numOfItemsInTheFavList -= 1
     },
+    isItemFavouriteItem: (state,action) => {
+      console.log('hello')
+        state.favouriteList.some(meetup => meetup.id === action.payload.id);
+    }
   },
-})
+}) 
 
-export const { addNewMeetup, removeMeetup} = FavouriteSlice.actions
+export const { addNewMeetup, removeMeetup, isItemFavouriteItem} = FavouriteSlice.actions
 export default FavouriteSlice.reducer

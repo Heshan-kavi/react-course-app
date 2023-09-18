@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewMeetup } from '../../store/reducers/FavouriteSlice';
+import { removeMeetup, isItemFavouriteItem, addNewMeetup } from '../../store/reducers/FavouriteSlice';
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 
@@ -7,6 +8,25 @@ import classes from './MeetupItem.module.css';
 function MeetupItem (props){
 
     const dispatch = useDispatch();
+    const [statusOfTheButton, setStatusOfTheButton] = useState(false);
+
+    function toggleTheStatus(meetup){
+        console.log(isItemFavouriteItem(meetup.id));
+        if(isItemFavouriteItem(meetup.id)){
+            console.log("comes to the addnew part")
+            setStatusOfTheButton(true);
+            dispatch(addNewMeetup({
+                id: meetup.id,
+                title: meetup.title,
+                description: meetup.description,
+                image: meetup.image
+            }))
+        }else{
+            console.log("comes to the existing part")
+            setStatusOfTheButton(false);
+            dispatch(removeMeetup(meetup.id));
+        }
+    }
 
     return (
         <li className={classes.item}>
@@ -21,8 +41,8 @@ function MeetupItem (props){
                 </div>
                 <div className={classes.actions}>
                     <button onClick={() => {
-                        dispatch(addNewMeetup({id : props.id}))
-                    }}>To Favourites</button>
+                        toggleTheStatus(props)
+                    }}>{statusOfTheButton ? 'Remove from the favourite list' : 'Add to the favourite list'}</button>
                 </div>
             </Card>
         </li>
