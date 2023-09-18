@@ -1,0 +1,18 @@
+.spinner {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding-left: 100px;
+  }
+  
+  .spinner span {
+    font-size: 2rem;
+    padding-right: 1rem;
+  }
+
+  .spinner b{
+    color: #cc2062
+  }
