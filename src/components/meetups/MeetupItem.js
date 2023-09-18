@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { removeMeetup, isItemFavouriteItem, addNewMeetup } from '../../store/reducers/FavouriteSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeMeetup, addNewMeetup } from '../../store/reducers/FavouriteSlice';
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 
@@ -8,24 +8,24 @@ import classes from './MeetupItem.module.css';
 function MeetupItem (props){
 
     const dispatch = useDispatch();
-    const [statusOfTheButton, setStatusOfTheButton] = useState(false);
+    const isThisItemAFavourite = useSelector((state) => state.favourite.favouriteList.some((meetup) => meetup.id === props.id))
+    const [isAFavourite, setisAFavourite] = useState(isThisItemAFavourite);
+    const toggleButton = isAFavourite ? <button onClick={() => {removeFromFavourites(props)}}>Remove from the favourite list</button> : <button onClick={() => {addToFavourites(props)}}>Add to favourite list</button>
 
-    function toggleTheStatus(meetup){
-        console.log(isItemFavouriteItem(meetup.id));
-        if(isItemFavouriteItem(meetup.id)){
-            console.log("comes to the addnew part")
-            setStatusOfTheButton(true);
-            dispatch(addNewMeetup({
-                id: meetup.id,
-                title: meetup.title,
-                description: meetup.description,
-                image: meetup.image
-            }))
-        }else{
-            console.log("comes to the existing part")
-            setStatusOfTheButton(false);
-            dispatch(removeMeetup(meetup.id));
-        }
+    function removeFromFavourites(meetup){
+        dispatch(removeMeetup(meetup));
+        setisAFavourite(false);
+    }
+
+    function addToFavourites(meetup){
+        dispatch(addNewMeetup({
+            id: meetup.id,
+            title: meetup.title,
+            description: meetup.description,
+            image: meetup.image,
+            isAFavourite: true
+        }))
+        setisAFavourite(true);
     }
 
     return (
@@ -40,9 +40,7 @@ function MeetupItem (props){
                     <p>{props.description}</p>
                 </div>
                 <div className={classes.actions}>
-                    <button onClick={() => {
-                        toggleTheStatus(props)
-                    }}>{statusOfTheButton ? 'Remove from the favourite list' : 'Add to the favourite list'}</button>
+                    {toggleButton}
                 </div>
             </Card>
         </li>
