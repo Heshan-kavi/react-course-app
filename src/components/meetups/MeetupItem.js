@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeMeetup, addNewMeetup } from '../../store/reducers/FavouriteSlice';
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
@@ -8,7 +8,8 @@ import classes from './MeetupItem.module.css';
 function MeetupItem (props){
 
     const dispatch = useDispatch();
-    const [isAFavourite, setisAFavourite] = useState(props.isAFavourite);
+    const isThisItemAFavourite = useSelector((state) => state.favourite.favouriteList.some((meetup) => meetup.id === props.id))
+    const [isAFavourite, setisAFavourite] = useState(isThisItemAFavourite);
     const toggleButton = isAFavourite ? <button onClick={() => {removeFromFavourites(props)}}>Remove from the favourite list</button> : <button onClick={() => {addToFavourites(props)}}>Add to favourite list</button>
 
     function removeFromFavourites(meetup){
