@@ -11,6 +11,7 @@ function MeetupList (props){
                 image={meetupItem.image}
                 title={meetupItem.title}
                 description={meetupItem.description}
+                isAFavourite={meetupItem.isAFavourite}
                 />
             })}
         </ul>

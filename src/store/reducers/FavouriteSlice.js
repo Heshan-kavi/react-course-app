@@ -15,7 +15,7 @@ export const FavouriteSlice = createSlice({
         }
     },
     removeMeetup: (state,action) => {
-        state.favouriteList.filter(meetup => meetup.id !== action.payload.id);
+        state.favouriteList = state.favouriteList.filter(meetup => meetup.id !== action.payload.id);
         state.numOfItemsInTheFavList -= 1
     },
     isItemFavouriteItem: (state,action) => {
