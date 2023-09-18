@@ -22,6 +22,7 @@ function MeetupItem (props){
             id: meetup.id,
             title: meetup.title,
             description: meetup.description,
+            address: meetup.address,
             image: meetup.image,
             isAFavourite: true
         }))
