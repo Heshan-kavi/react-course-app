@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 import LoadingScreen from "../components/layout/LoadingScreen";
+import EmptyPage from "../components/layout/EmptyPage";
 
 function AllMeetups (){
 
@@ -37,8 +38,8 @@ function AllMeetups (){
 
   return (
       <section>
-        <h1>All meetings</h1>
-        <MeetupList meetups={loadedData}/>
+        <h1>All Meetings</h1>
+        {loadedData.length === 0 ? <EmptyPage pageName={'All Meetings'}/> : <MeetupList meetups={loadedData}/>}
       </section>
   )
 }

@@ -7,7 +7,7 @@ function LoadingScreen(){
         <div className={classes.spinner}>
             <span>Loading...</span>
             <div className={classes.half_spinner}></div>
-          </div>
+        </div>
       );
 }
 
