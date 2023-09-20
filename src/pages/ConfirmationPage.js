@@ -29,7 +29,7 @@ function ConfirmationPage(){
                             <td>{val.title}</td>
                             <td>{val.address}</td>
                             <td width="1000px" className={classes.td_customized} >{val.description.substring(0,150)} ... <button className={classes.button_customized} onClick={(event) => seeMoreClickHandler(event,val.description)}>see more</button></td>
-                            <td><input type="image" img src = {val.image} alt="photo" width="300px"/></td>
+                            <td><input type="image" src={val.image.toString()} alt="photo" width="300px"/></td>
                         </tr>
                     )
                 })}
