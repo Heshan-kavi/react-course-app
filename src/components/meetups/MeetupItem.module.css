@@ -28,6 +28,8 @@
   .actions {
     padding: 1.5rem;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 40px;
   }
   
   .actions button {
